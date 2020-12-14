@@ -1,22 +1,23 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react';
+import { Link } from 'gatsby';
 
 import {
   handleLinkClick,
   stripHashedLocation,
-  handleStrippedLinkClick
-} from "../utils";
-import { anchorLinkTypes } from "../types";
+  handleStrippedLinkClick,
+} from '../utils';
+import { anchorLinkTypes } from '../types';
 
-export function AnchorLink({
-  to,
-  title,
-  children,
-  className,
-  stripHash = false,
-  gatsbyLinkProps = {},
-  onAnchorLinkClick
-}) {
+export function AnchorLink(props) {
+  const {
+    to,
+    title,
+    children,
+    className,
+    stripHash = false,
+    gatsbyLinkProps = {},
+    onAnchorLinkClick,
+  } = props;
   const onClickHandler = stripHash ? handleStrippedLinkClick : handleLinkClick;
   const linkProps = {
     ...gatsbyLinkProps,
@@ -24,7 +25,7 @@ export function AnchorLink({
      * Spread optional gatsbyLinkProps object in fist, so our specific props will override
      */
     to: stripHash ? stripHashedLocation(to) : to,
-    onClick: e => onClickHandler(to, e, onAnchorLinkClick)
+    onClick: (e) => onClickHandler(to, e, onAnchorLinkClick, props?.offset),
   };
 
   /**

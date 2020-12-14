@@ -1,6 +1,9 @@
-import { checkHash, isBrowser, scroller } from "./utils";
+import { checkHash, isBrowser, scroller } from './utils';
 
-export const onRouteUpdate = ({ location }, { offset = 0, duration = 1000 }) => {
+export const onRouteUpdate = (
+  { location },
+  { offset = 0, duration = 1000 }
+) => {
   let windowHash;
 
   if (isBrowser) {
